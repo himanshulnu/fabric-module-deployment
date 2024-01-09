@@ -27,7 +27,7 @@ module "nlb" {
   }
   group_configs = {
     my-group = {
-      zone      = local.zone
+      zone      = var.zone
       instances = data.google_compute_instance_group.all.instances
     }
   }
