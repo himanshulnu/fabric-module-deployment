@@ -4,7 +4,7 @@ locals {
 
 module "vpc" {
   source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v28.0.0"
-  project_id = "cft-seed-himanshu"
+  project_id = var.project_id
   name       = "${local.prefix}-vpc"
   subnets = [
     {
