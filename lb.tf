@@ -13,6 +13,7 @@ data "google_compute_instance_group" "all" {
 ****************************************************************/
 module "nlb" {
   source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-lb-ext?ref=v28.0.0"
+  depends_on = [module.nginx-mig]
   project_id = var.project_id
   region     = var.region
   name       = "${local.prefix}-nlb"
