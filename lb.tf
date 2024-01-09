@@ -4,7 +4,7 @@
 
 data "google_compute_instance_group" "all" {
   depends_on = [module.nginx-mig]
-  name       = "${local.prefix}-mig-test"
+  name       = "${local.prefix}-mig"
   zone       = "asia-south1-a"
 }
 

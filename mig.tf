@@ -27,7 +27,7 @@ module "nginx-mig" {
   source            = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v28.0.0"
   project_id        = var.project_id
   location          = var.zone
-  name              = "${local.prefix}-mig-test"
+  name              = "${local.prefix}-mig"
   target_size       = 2
   instance_template = module.nginx-template.template.self_link
 }
