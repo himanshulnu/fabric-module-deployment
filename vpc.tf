@@ -22,6 +22,6 @@ module "nat" {
   source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v28.0.0"
   project_id     = var.project_id
   region         = "asia-south1"
-  name           = "${module.vpc.name}-nat"
+  name           = "${local.prefix}-${module.vpc.name}-nat"
   router_network = module.vpc.name
 }

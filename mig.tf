@@ -4,7 +4,7 @@
 module "nginx-template" {
   source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v28.0.0"
   project_id = var.project_id
-  name       = "nginx-template1"
+  name       = "${local.prefix}-nginx-template"
   zone       = var.zone
   tags       = ["http-server", "ssh", "https-server"]
   network_interfaces = [{
@@ -27,7 +27,7 @@ module "nginx-mig" {
   source            = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v28.0.0"
   project_id        = var.project_id
   location          = var.zone
-  name              = "mig-test"
+  name              = "${local.prefix}-mig-test"
   target_size       = 2
   instance_template = module.nginx-template.template.self_link
 }
