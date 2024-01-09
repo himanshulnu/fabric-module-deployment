@@ -7,9 +7,9 @@ module "firewall" {
   project_id = var.project_id
   network    = module.vpc.name
   default_rules_config = {
-    ssh_ranges  = ["35.235.240.0/20"]
-    ssh_tags    = ["ssh"]
-    
+    ssh_ranges = ["35.235.240.0/20"]
+    ssh_tags   = ["ssh"]
+
     http_ranges = ["0.0.0.0/0"]
     http_tags   = ["http-server"]
 
