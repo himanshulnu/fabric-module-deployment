@@ -1,6 +1,18 @@
+/***************************************************************
+    Fetching instance deatils of MIG
+****************************************************************/
+
+data "google_compute_instance_group" "all" {
+  depends_on = [module.nginx-mig]
+  name       = "mig-test"
+  zone       = "asia-south1-a"
+}
+
+/***************************************************************
+    Load Balancer Creation
+****************************************************************/
 module "nlb" {
-  source = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-lb-ext?ref=v28.0.0"
-  //source     = "./fabric/modules/net-lb-ext"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-lb-ext?ref=v28.0.0"
   project_id = var.project_id
   region     = var.region
   name       = "nlb-test"
@@ -15,7 +27,7 @@ module "nlb" {
   }
   group_configs = {
     my-group = {
-      zone      = "${var.region}-a"
+      zone      = var.zone
       instances = data.google_compute_instance_group.all.instances
     }
   }

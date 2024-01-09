@@ -1,6 +1,6 @@
-locals {
-  prefix = "fr-mod-dpy"
-}
+/***************************************************************
+    VPC 
+****************************************************************/
 
 module "vpc" {
   source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v28.0.0"
@@ -15,11 +15,13 @@ module "vpc" {
   ]
 }
 
-
+/***************************************************************
+    NAT
+****************************************************************/
 module "nat" {
   source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v28.0.0"
- project_id = var.project_id
-  region        = "asia-south1"
+  project_id     = var.project_id
+  region         = "asia-south1"
   name           = "${module.vpc.name}-nat"
   router_network = module.vpc.name
 }
